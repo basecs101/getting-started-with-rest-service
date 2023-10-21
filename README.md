@@ -1,6 +1,67 @@
 # gettting-started-with-rest-service
 A sample spring boot rest application and demo rest methods
 
+
+----------------- Networking Concepts ---------------
+IPv4 -> 4 octets -> 4*8 =32 bits -> 2^32
+
+1.2.3.4
+255.240.10.20
+------------------------
+IPv6
+0 -> 0000
+1 -> 0001
+2 -> 0010
+3 -> 0011
+4 -> 0100
+5 -> 0101
+6 -> 0110
+7 -> 0111
+8 -> 1000
+9 -> 1001
+A -> 1010
+B -> 1011
+C -> 1100
+D -> 1101
+E -> 1110
+F -> 1111
+
+
+AAAA:BBBB:AABB:CCBB:DDAA:BEEB:AAFF:BBAA
+16+   16+  16+  16+  16+  16+  16+  16 =128
+
+
+------------------------
+IP protocol -> Machine has an IP on the internet
+Port -> Communication channel for a service
+------------------------
+
+TCP - IP Protocol + port -> Transimission control protocol -> Connection oriented
+------------------------
+UDP - User datagram protocol -> Connection oriented
+------------------------
+
+HTTP ->  TCP protocol over 80 port =(IP + Port) + 80 port reserved
+------------------------
+
+FTP -> File transfer protocol -> 20-21
+------------------------
+
+SSH -> Secure Shell -> 22
+------------------------
+
+SFTP -> Secure FTP ->
+------------------------
+
+DNS -> Domain name Service -> 53
+
+------------------------
+NIC Card -> N/w interface card
+Number of NIC cards = Number of IP address
+
+
+----------------------- What is REST ----------------------
+
 REST (Representational State Transfer) is an architectural style used in web development for building scalable, performant, and maintainable web services. RESTful API (Application Programming Interface) is an implementation of the REST architecture.
 
 RESTful API is a type of web API that is designed to work with HTTP (Hypertext Transfer Protocol) requests such as GET, POST, PUT, DELETE, etc., to retrieve, create, update or delete resources on the web. RESTful APIs use HTTP methods to define the actions to be performed on resources, and use URLs (Uniform Resource Locators) to identify resources.
@@ -9,7 +70,7 @@ RESTful APIs typically return data in JSON (JavaScript Object Notation) or XML (
 
 RESTful APIs are widely used in modern web development for creating web services that are easy to consume, scalable, and platform-agnostic. They are used by many popular web applications and services, such as Twitter, Facebook, and Google Maps.
 
-
+------------------------- Request URL example -------------
 > Example of URL :- `http://localhost:8080/greeting?name=Vikram`
 
 * http -> protocol
@@ -18,6 +79,8 @@ RESTful APIs are widely used in modern web development for creating web services
 * /greeting -> path or endpoint
 * name -> request parameter key
 * Vikram -> request parameter value
+
+------------- Important Spring boot Annotations ----------------
 
 ### Spring Boot Annotations:
 1. `SpringBootApplication` : `@SpringBootApplication` is a convenience annotation that adds all of the following:
