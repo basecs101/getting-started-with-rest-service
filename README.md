@@ -108,8 +108,10 @@ Create separate configuration files for each profile. By default, Spring Boot us
 For example, you can create an application-dev.properties file for the "dev" profile:
 
 ### application-dev.properties
+```
 spring.datasource.url=jdbc:mysql://localhost:3306/dev_database
 logging.level.root=debug
+```
 
 2. Activate Profiles:
 Profiles can be activated in various ways. 
