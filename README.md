@@ -1,8 +1,6 @@
 # gettting-started-with-rest-service
 A sample spring boot rest application and demo rest methods
-
-
------------------ Networking Concepts ---------------
+## ----------------- Networking Concepts ---------------
 IPv4 -> 4 octets -> 4*8 =32 bits -> 2^32
 
 1.2.3.4
@@ -26,41 +24,21 @@ D -> 1101
 E -> 1110
 F -> 1111
 
-
 AAAA:BBBB:AABB:CCBB:DDAA:BEEB:AAFF:BBAA
 16+   16+  16+  16+  16+  16+  16+  16 =128
+## ---------------- Protocols ----------------
+1. IP protocol -> Machine has an IP on the internet
+   Port -> Communication channel for a service 
+2. TCP - IP Protocol + port -> Transimission control protocol -> Connection oriented 
+3. UDP - User datagram protocol -> Connection oriented 
+4. HTTP ->  TCP protocol over 80 port =(IP + Port) + 80 port reserved 
+5. FTP -> File transfer protocol -> 20-21 
+6. SSH -> Secure Shell -> 22 
+7. SFTP -> Secure FTP ->
+8. DNS -> Domain name Service -> 53
+9.NIC Card -> N/w interface card, Number of NIC cards = Number of IP address
 
-
-------------------------
-IP protocol -> Machine has an IP on the internet
-Port -> Communication channel for a service
-------------------------
-
-TCP - IP Protocol + port -> Transimission control protocol -> Connection oriented
-------------------------
-UDP - User datagram protocol -> Connection oriented
-------------------------
-
-HTTP ->  TCP protocol over 80 port =(IP + Port) + 80 port reserved
-------------------------
-
-FTP -> File transfer protocol -> 20-21
-------------------------
-
-SSH -> Secure Shell -> 22
-------------------------
-
-SFTP -> Secure FTP ->
-------------------------
-
-DNS -> Domain name Service -> 53
-
-------------------------
-NIC Card -> N/w interface card
-Number of NIC cards = Number of IP address
-
-
------------------------ What is REST ----------------------
+## --------------- What is REST -------------
 
 REST (Representational State Transfer) is an architectural style used in web development for building scalable, performant, and maintainable web services. RESTful API (Application Programming Interface) is an implementation of the REST architecture.
 
@@ -70,7 +48,28 @@ RESTful APIs typically return data in JSON (JavaScript Object Notation) or XML (
 
 RESTful APIs are widely used in modern web development for creating web services that are easy to consume, scalable, and platform-agnostic. They are used by many popular web applications and services, such as Twitter, Facebook, and Google Maps.
 
-------------------------- Request URL example -------------
+## ------------- API Architectural designs You Must Know ------------
+
+1. REST 🌐
+   Representational State Transfer - REST is like a classic library where you request specific books and receive them as they are. It's simple and widely used for web APIs, like ordering a la carte from a menu 🍽️.
+
+2. GraphQL 🚀
+   GraphQL is like a customizable buffet 🍴 where you ask for exactly what you want and get a tailored plate. It allows clients to request only the data they need, reducing over-fetching.
+
+3. SOAP 🧼
+   SOAP (Simple Object Access Protocol) is like sending a letter 💌 with detailed instructions, complete with a table of contents. It's more structured but can be heavier than REST or GraphQL.
+
+4. gRPC 🚄:
+   gRPC is like a high-speed train 🚄 for communication between services. It uses Protocol Buffers for efficient data exchange and supports streaming and bidirectional communication.
+
+5. WebSockets 🌐💬
+   WebSockets are like real-time phone calls ☎️ for the web. They enable two-way communication, perfect for chat apps and live updates.
+
+6. MQTT 📡
+   MQTT (Message Queuing Telemetry Transport) is like a radio broadcast 📻, designed for low-bandwidth, high-latency, or unreliable networks. Ideal for IoT devices and sensor data.
+
+![api-architecture-design.gif](src/main/resources/api-architecture-design.gif)
+------------------------- Request URL example for REST -------------
 > Example of URL :- `http://localhost:8080/greeting?name=Vikram`
 
 * http -> protocol
@@ -79,6 +78,24 @@ RESTful APIs are widely used in modern web development for creating web services
 * /greeting -> path or endpoint
 * name -> request parameter key
 * Vikram -> request parameter value
+--------- what is spring framework and how spring boot and spring MVC are different? ---------------
+
+1. Spring Framework:
+   - Spring is a comprehensive Java-based framework used for building enterprise applications.
+   - It provides various modules and features for addressing common concerns in application development, such as dependency injection, aspect-oriented programming, transaction management, and more.
+   - Spring promotes a modular and flexible approach to application development, making it easier to manage complex applications and improve testability and maintainability.
+
+2. Spring Boot:
+   - Spring Boot is a project within the Spring ecosystem that simplifies the setup and development of Spring applications.
+   - It provides a set of conventions and pre-configured settings to streamline the development process, reducing the need for extensive configuration.
+   - Spring Boot is particularly well-suited for building microservices and standalone applications, and it includes embedded web servers for deploying web applications with minimal effort.
+
+3. Spring MVC:
+   - Spring MVC (Model-View-Controller) is a part of the Spring Framework used for developing web applications.
+   - It focuses on building web applications with a clear separation of concerns, where the Model represents the application's data, the View handles the presentation, and the Controller manages the flow of requests and responses.
+   - Spring Boot can be used in conjunction with Spring MVC to simplify web application development, but Spring MVC is primarily focused on the web layer, while Spring Boot simplifies the overall application setup and configuration.
+
+In summary, Spring is a versatile framework for building enterprise applications, Spring Boot simplifies application setup and development, and Spring MVC is a component of Spring specifically designed for building web applications. They can be used together to create web applications efficiently.
 
 ------------- Important Spring boot Annotations ----------------
 
@@ -98,6 +115,8 @@ RESTful APIs are widely used in modern web development for creating web services
 8. `DeleteMapping` : Delete existing resource
 9. `RequestParam` : @RequestParam binds the value of the query string parameter name into the name parameter of the greeting() method. If the name parameter is absent in the request, the defaultValue of World is used.
 
+
+Jackson - Json -> Converts java objects to Json objects.
 The main() method uses Spring Boot’s SpringApplication.run() method to launch an application. Did you notice that there was not a single line of XML? There is no web.xml file, either. This web application is 100% pure Java and you did not have to deal with configuring any plumbing or infrastructure.
 
 Note:
