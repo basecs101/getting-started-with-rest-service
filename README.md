@@ -97,11 +97,61 @@ RESTful APIs are widely used in modern web development for creating web services
 
 In summary, Spring is a versatile framework for building enterprise applications, Spring Boot simplifies application setup and development, and Spring MVC is a component of Spring specifically designed for building web applications. They can be used together to create web applications efficiently.
 
+## ------------- Spring boot profiles ---------------
+
+Spring Boot allows you to define and work with multiple profiles, which is helpful when you want to manage different configurations for your application based on the environment or use case. Profiles are typically used to manage settings like database connection details, logging levels, and other configuration parameters for various deployment environments (e.g., development, testing, production). Here's how you can create and use multiple profiles in Spring Boot:
+
+1. Define Multiple Configuration Files:
+
+Create separate configuration files for each profile. By default, Spring Boot uses application.properties or application.yml. To create a profile-specific configuration, you can create files like application-dev.properties, application-test.properties, and application-prod.properties for development, testing, and production profiles, respectively.
+
+For example, you can create an application-dev.properties file for the "dev" profile:
+
+### application-dev.properties
+spring.datasource.url=jdbc:mysql://localhost:3306/dev_database
+logging.level.root=debug
+
+2. Activate Profiles:
+Profiles can be activated in various ways. 
+
+The most common methods are:
+   * Using application.properties or application.yml:
+   You can specify the active profile in your application.properties or application.yml file using the spring.profiles.active property.
+   `spring.profiles.active=dev`
+  * Using Command Line Arguments:
+  You can specify the active profile as a command-line argument when running your Spring Boot application.
+  `java -jar my-spring-app.jar --spring.profiles.active=dev`
+  * Using Environment Variables:
+  You can set the `SPRING_PROFILES_ACTIVE` environment variable to specify the active profile.
+  Using the application-{profile}.properties or application-{profile}.yml Naming Convention:
+  Spring Boot will automatically pick up the appropriate profile-specific configuration file based on the active profile.
+
+3. Access Profile-Specific Properties:
+In your Java code, you can access the profile-specific properties using the @Value annotation or by injecting the Environment object.
+```
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
+
+@Component
+@Profile("dev")
+public class MyComponent {
+@Value("${spring.datasource.url}")
+private String databaseUrl;
+
+    // ...
+}
+```
+4. Run the Application:
+When you run your Spring Boot application, it will load the configuration properties from the specified profile. Make sure you activate the desired profile using one of the methods mentioned above.
+By following these steps, you can create and manage multiple profiles in a Spring Boot application, allowing you to configure and customize the application for different environments or use cases.
+
+
 ------------- Important Spring boot Annotations ----------------
 
 ### Spring Boot Annotations:
 1. `SpringBootApplication` : `@SpringBootApplication` is a convenience annotation that adds all of the following:
-   `@Configuration`: Tags the class as a source of bean definitions for the application context.
+   `@SpringBootConfiguration`: Tags the class as a source of bean definitions for the application context.
    `@EnableAutoConfiguration`: Tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings. For example, if spring-webmvc is on the classpath, this annotation flags the application as a web application and activates key behaviors, such as setting up a DispatcherServlet.
    `@ComponentScan`: Tells Spring to look for other components, configurations, and services in the com/example package, letting it find the controllers.
 2. `SpringBootTest`
@@ -114,7 +164,7 @@ In summary, Spring is a versatile framework for building enterprise applications
 7. `PatchMapping` : Partial update of resource
 8. `DeleteMapping` : Delete existing resource
 9. `RequestParam` : @RequestParam binds the value of the query string parameter name into the name parameter of the greeting() method. If the name parameter is absent in the request, the defaultValue of World is used.
-
+10. `Profile` : It sets the spring managed beans to specifically available due that profile.
 
 Jackson - Json -> Converts java objects to Json objects.
 The main() method uses Spring Boot’s SpringApplication.run() method to launch an application. Did you notice that there was not a single line of XML? There is no web.xml file, either. This web application is 100% pure Java and you did not have to deal with configuring any plumbing or infrastructure.
