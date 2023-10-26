@@ -171,6 +171,28 @@ By following these steps, you can create and manage multiple profiles in a Sprin
 Jackson - Json -> Converts java objects to Json objects.
 The main() method uses Spring Boot’s SpringApplication.run() method to launch an application. Did you notice that there was not a single line of XML? There is no web.xml file, either. This web application is 100% pure Java and you did not have to deal with configuring any plumbing or infrastructure.
 
+------------- Logging in Java Application ----------------
+We can use lombok dependency at compile time to include SLF4J annotation for logging.
+Basically it creates a log object for annotated class and can use to log at different levels.
+Lombok is a dependency that has many useful annotations.
+
+SLF4J - Simple Logging Facade for Java
+This is an interface or facade or API.
+SLF4J is not a library for logging but exposes logging to use different logging methods
+
+SLF4J internally uses many logging libraries -- 
+1. jul(java util logging)-to-slf4j -> slf4j-api
+2. log4j-to-slf4j -> slf4j-api
+3. logback-classic -> slf4j-api
+
+Logging methods ->
+
+1. error 
+2. warn
+3. info 
+4. debug 
+5. trace
+
 Note:
 There are companion annotations for other HTTP verbs (e.g. @PostMapping for POST). There is also a @RequestMapping annotation that they all derive from, and can serve as a synonym (e.g. @RequestMapping(method=GET)).
 ### Reference [Tutorial](https://spring.io/guides/gs/rest-service/)

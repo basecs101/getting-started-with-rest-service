@@ -16,8 +16,17 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok:1.18.30'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	dependencies {
+		implementation('org.springframework.boot:spring-boot-starter-web') {
+			exclude group: 'org.slf4j', module: 'jul-to-slf4j'
+			exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+
+		}
+	}
+
 }
 
 tasks.named('test') {
