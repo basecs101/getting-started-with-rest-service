@@ -16,6 +16,11 @@ public class GreetingController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
+    /**
+     * returns a greeting msg with id
+     * @param msgValue
+     * @return Greeting
+     */
     @GetMapping("/greeting")
     public Greeting greeting(@RequestParam(value = "msg", defaultValue = "World") String msgValue) {
         log.error("greeting method called...error log");
