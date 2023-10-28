@@ -1,5 +1,13 @@
 # gettting-started-with-rest-service
 A sample spring boot rest application and demo rest methods
+A lot of other concepts covered in readme
+1. Networking
+2. Logging framework and levels
+3. architecture styles
+4. rest methods
+5. spring boot profiles
+6. spring boot annotations
+
 ## ----------------- Networking Concepts ---------------
 IPv4 -> 4 octets -> 4*8 =32 bits -> 2^32
 
