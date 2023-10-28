@@ -1,12 +1,43 @@
-# gettting-started-with-rest-service
-A sample spring boot rest application and demo rest methods
-A lot of other concepts covered in readme
-1. Networking
-2. Logging framework and levels
-3. architecture styles
-4. rest methods
-5. spring boot profiles
-6. spring boot annotations
+# getting-started-with-rest-service
+A sample spring boot rest application and demo rest methods. 
+A lot of other concepts covered in readme. \n
+Here's a table of contents for this README doc:
+
+1. **Introduction**
+   - Brief overview of the "getting-started-with-rest-service" project.
+
+2. **Networking Concepts**
+   - Explanation of IPv4 and IPv6.
+
+3. **Protocols**
+   - Description of various networking protocols like IP, TCP, UDP, HTTP, FTP, SSH, SFTP, DNS, and NIC Card.
+
+4. **What is REST**
+   - Introduction to REST and RESTful APIs.
+
+5. **API Architectural Designs You Must Know**
+   - Overview of different API architectural designs, including REST, GraphQL, SOAP, gRPC, WebSockets, and MQTT.
+
+6. **Request URL Example for REST**
+   - Explanation of a REST request URL with its components.
+
+7. **What is Spring Framework and How Spring Boot and Spring MVC Are Different**
+   - Distinction between Spring Framework, Spring Boot, and Spring MVC.
+
+8. **Spring Boot Profiles**
+   - Explanation of managing multiple profiles in Spring Boot for different environments.
+
+9. **Important Spring Boot Annotations**
+   - Overview of significant annotations used in Spring Boot.
+
+10. **Logging in Java Application**
+    - Information about logging in Java applications and SLF4J.
+
+11. **Logging Levels**
+    - Description of various logging levels, including error, warn, info, debug, and trace.
+
+12. **Reference**
+    - A reference to an external tutorial.
 
 ## ----------------- Networking Concepts ---------------
 IPv4 -> 4 octets -> 4*8 =32 bits -> 2^32
