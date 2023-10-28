@@ -1,4 +1,4 @@
-# getting-started-with-rest-service
+# Getting Started with Rest Service
 A sample spring boot rest application and demo rest methods. 
 A lot of other concepts covered in readme. \n
 Here's a table of contents for this README doc:
@@ -39,7 +39,7 @@ Here's a table of contents for this README doc:
 12. **Reference**
     - A reference to an external tutorial.
 
-## ----------------- Networking Concepts ---------------
+## Networking Concepts
 IPv4 -> 4 octets -> 4*8 =32 bits -> 2^32
 
 1.2.3.4
@@ -65,10 +65,10 @@ F -> 1111
 
 AAAA:BBBB:AABB:CCBB:DDAA:BEEB:AAFF:BBAA
 16+   16+  16+  16+  16+  16+  16+  16 =128
-## ---------------- Protocols ----------------
+## Protocols
 1. IP protocol -> Machine has an IP on the internet
    Port -> Communication channel for a service 
-2. TCP - IP Protocol + port -> Transimission control protocol -> Connection oriented 
+2. TCP - IP Protocol + port -> Transmission control protocol -> Connection oriented 
 3. UDP - User datagram protocol -> Connection oriented 
 4. HTTP ->  TCP protocol over 80 port =(IP + Port) + 80 port reserved 
 5. FTP -> File transfer protocol -> 20-21 
@@ -77,7 +77,7 @@ AAAA:BBBB:AABB:CCBB:DDAA:BEEB:AAFF:BBAA
 8. DNS -> Domain name Service -> 53
 9.NIC Card -> N/w interface card, Number of NIC cards = Number of IP address
 
-## --------------- What is REST -------------
+## What is REST
 
 REST (Representational State Transfer) is an architectural style used in web development for building scalable, performant, and maintainable web services. RESTful API (Application Programming Interface) is an implementation of the REST architecture.
 
@@ -87,7 +87,7 @@ RESTful APIs typically return data in JSON (JavaScript Object Notation) or XML (
 
 RESTful APIs are widely used in modern web development for creating web services that are easy to consume, scalable, and platform-agnostic. They are used by many popular web applications and services, such as Twitter, Facebook, and Google Maps.
 
-## ------------- API Architectural designs You Must Know ------------
+## API Architectural designs You Must Know
 
 1. REST 🌐
    Representational State Transfer - REST is like a classic library where you request specific books and receive them as they are. It's simple and widely used for web APIs, like ordering a la carte from a menu 🍽️.
@@ -109,7 +109,7 @@ RESTful APIs are widely used in modern web development for creating web services
 
 ![api-architecture-design.gif](src/main/resources/api-architecture-design.gif)
 
-## ----------- Request URL example for REST -------------
+## Request URL example for REST
 > Example of URL :- `http://localhost:8080/greeting?name=Vikram`
 
 * http -> protocol
@@ -119,7 +119,7 @@ RESTful APIs are widely used in modern web development for creating web services
 * name -> request parameter key
 * Vikram -> request parameter value
 
-## -- what is spring framework and how spring boot and spring MVC are different? --------
+## What is Spring Framework and How Spring Boot and Spring MVC are different?
 
 1. Spring Framework:
    - Spring is a comprehensive Java-based framework used for building enterprise applications.
@@ -130,7 +130,7 @@ RESTful APIs are widely used in modern web development for creating web services
    - Spring Boot is a project within the Spring ecosystem that simplifies the setup and development of Spring applications.
    - It provides a set of conventions and pre-configured settings to streamline the development process, reducing the need for extensive configuration.
    - Spring Boot is particularly well-suited for building microservices and standalone applications, and it includes embedded web servers for deploying web applications with minimal effort.
-
+   - The main() method uses Spring Boot’s SpringApplication.run() method to launch an application. Did you notice that there was not a single line of XML? There is no web.xml file, either. This web application is 100% pure Java and you did not have to deal with configuring any plumbing or infrastructure.
 3. Spring MVC:
    - Spring MVC (Model-View-Controller) is a part of the Spring Framework used for developing web applications.
    - It focuses on building web applications with a clear separation of concerns, where the Model represents the application's data, the View handles the presentation, and the Controller manages the flow of requests and responses.
@@ -138,7 +138,7 @@ RESTful APIs are widely used in modern web development for creating web services
 
 In summary, Spring is a versatile framework for building enterprise applications, Spring Boot simplifies application setup and development, and Spring MVC is a component of Spring specifically designed for building web applications. They can be used together to create web applications efficiently.
 
-## -------- Spring boot profiles ----------
+## Spring Boot Profiling and How to Set it?
 
 Spring Boot allows you to define and work with multiple profiles, which is helpful when you want to manage different configurations for your application based on the environment or use case. Profiles are typically used to manage settings like database connection details, logging levels, and other configuration parameters for various deployment environments (e.g., development, testing, production). Here's how you can create and use multiple profiles in Spring Boot:
 
@@ -191,7 +191,7 @@ When you run your Spring Boot application, it will load the configuration proper
 By following these steps, you can create and manage multiple profiles in a Spring Boot application, allowing you to configure and customize the application for different environments or use cases.
 
 
-## --------- Important Spring boot Annotations ----------
+## Important Spring Boot Annotations
 
 ### Spring Boot Annotations:
 1. `SpringBootApplication` : `@SpringBootApplication` is a convenience annotation that adds all of the following:
@@ -210,10 +210,10 @@ By following these steps, you can create and manage multiple profiles in a Sprin
 9. `RequestParam` : @RequestParam binds the value of the query string parameter name into the name parameter of the greeting() method. If the name parameter is absent in the request, the defaultValue of World is used.
 10. `Profile` : It sets the spring managed beans to specifically available due that profile.
 11. `Value` : Reads an attribute from application.properties file and stores it into an object field.
-Jackson - Json -> Converts java objects to Json objects.
-The main() method uses Spring Boot’s SpringApplication.run() method to launch an application. Did you notice that there was not a single line of XML? There is no web.xml file, either. This web application is 100% pure Java and you did not have to deal with configuring any plumbing or infrastructure.
 
-## ------- Logging in Java Application ---------
+Note: Jackson - Json -> Converts java objects to Json objects.
+
+## Logging in Java Application
 We can use lombok dependency at compile time to include SLF4J annotation for logging.
 Basically it creates a log object for annotated class and can use to log at different levels.
 Lombok is a dependency that has many useful annotations.
