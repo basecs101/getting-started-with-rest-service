@@ -69,7 +69,8 @@ RESTful APIs are widely used in modern web development for creating web services
    MQTT (Message Queuing Telemetry Transport) is like a radio broadcast 📻, designed for low-bandwidth, high-latency, or unreliable networks. Ideal for IoT devices and sensor data.
 
 ![api-architecture-design.gif](src/main/resources/api-architecture-design.gif)
-------------------------- Request URL example for REST -------------
+
+## ----------- Request URL example for REST -------------
 > Example of URL :- `http://localhost:8080/greeting?name=Vikram`
 
 * http -> protocol
@@ -78,7 +79,8 @@ RESTful APIs are widely used in modern web development for creating web services
 * /greeting -> path or endpoint
 * name -> request parameter key
 * Vikram -> request parameter value
---------- what is spring framework and how spring boot and spring MVC are different? ---------------
+
+## -- what is spring framework and how spring boot and spring MVC are different? --------
 
 1. Spring Framework:
    - Spring is a comprehensive Java-based framework used for building enterprise applications.
@@ -97,7 +99,7 @@ RESTful APIs are widely used in modern web development for creating web services
 
 In summary, Spring is a versatile framework for building enterprise applications, Spring Boot simplifies application setup and development, and Spring MVC is a component of Spring specifically designed for building web applications. They can be used together to create web applications efficiently.
 
-## ------------- Spring boot profiles ---------------
+## -------- Spring boot profiles ----------
 
 Spring Boot allows you to define and work with multiple profiles, which is helpful when you want to manage different configurations for your application based on the environment or use case. Profiles are typically used to manage settings like database connection details, logging levels, and other configuration parameters for various deployment environments (e.g., development, testing, production). Here's how you can create and use multiple profiles in Spring Boot:
 
@@ -107,28 +109,29 @@ Create separate configuration files for each profile. By default, Spring Boot us
 
 For example, you can create an application-dev.properties file for the "dev" profile:
 
-### application-dev.properties
-```
-spring.datasource.url=jdbc:mysql://localhost:3306/dev_database
-logging.level.root=debug
-```
+   ### application-dev.properties
+   ```
+   spring.datasource.url=jdbc:mysql://localhost:3306/dev_database
+   logging.level.root=debug
+   ```
 
 2. Activate Profiles:
 Profiles can be activated in various ways. 
 
 The most common methods are:
-   * Using application.properties or application.yml:
-   You can specify the active profile in your application.properties or application.yml file using the spring.profiles.active property.
+   * Using `application.properties` or `application.yml`:
+   You can specify the active profile in your `application.properties` or `application.yml` file using the `spring.profiles.active` property.
    `spring.profiles.active=dev`
   * Using Command Line Arguments:
   You can specify the active profile as a command-line argument when running your Spring Boot application.
   `java -jar my-spring-app.jar --spring.profiles.active=dev`
   * Using Environment Variables:
   You can set the `SPRING_PROFILES_ACTIVE` environment variable to specify the active profile.
-  Using the application-{profile}.properties or application-{profile}.yml Naming Convention:
+  Using the `application-{profile}.properties` or `application-{profile}.yml` Naming Convention:
   Spring Boot will automatically pick up the appropriate profile-specific configuration file based on the active profile.
 
 3. Access Profile-Specific Properties:
+Configure a component or bean using @Profile annotation and get the beans when that profile is set.
 In your Java code, you can access the profile-specific properties using the @Value annotation or by injecting the Environment object.
 ```
 import org.springframework.beans.factory.annotation.Value;
@@ -149,7 +152,7 @@ When you run your Spring Boot application, it will load the configuration proper
 By following these steps, you can create and manage multiple profiles in a Spring Boot application, allowing you to configure and customize the application for different environments or use cases.
 
 
-------------- Important Spring boot Annotations ----------------
+## --------- Important Spring boot Annotations ----------
 
 ### Spring Boot Annotations:
 1. `SpringBootApplication` : `@SpringBootApplication` is a convenience annotation that adds all of the following:
@@ -167,11 +170,11 @@ By following these steps, you can create and manage multiple profiles in a Sprin
 8. `DeleteMapping` : Delete existing resource
 9. `RequestParam` : @RequestParam binds the value of the query string parameter name into the name parameter of the greeting() method. If the name parameter is absent in the request, the defaultValue of World is used.
 10. `Profile` : It sets the spring managed beans to specifically available due that profile.
-
+11. `Value` : Reads an attribute from application.properties file and stores it into an object field.
 Jackson - Json -> Converts java objects to Json objects.
 The main() method uses Spring Boot’s SpringApplication.run() method to launch an application. Did you notice that there was not a single line of XML? There is no web.xml file, either. This web application is 100% pure Java and you did not have to deal with configuring any plumbing or infrastructure.
 
-------------- Logging in Java Application ----------------
+## ------- Logging in Java Application ---------
 We can use lombok dependency at compile time to include SLF4J annotation for logging.
 Basically it creates a log object for annotated class and can use to log at different levels.
 Lombok is a dependency that has many useful annotations.
@@ -180,18 +183,23 @@ SLF4J - Simple Logging Facade for Java
 This is an interface or facade or API.
 SLF4J is not a library for logging but exposes logging to use different logging methods
 
-SLF4J internally uses many logging libraries -- 
-1. jul(java util logging)-to-slf4j -> slf4j-api
-2. log4j-to-slf4j -> slf4j-api
-3. logback-classic -> slf4j-api
+### SLF4J internally uses many logging libraries ->
+1. **jul (java util logging) to slf4j**: The jul-to-slf4j library facilitates the integration of SLF4J by including the SLF4J API, allowing applications using Java Util Logging (JUL) to route their logs through SLF4J.
 
-Logging methods ->
+2. **log4j-to-slf4j**: The log4j-to-slf4j library includes the SLF4J API, enabling applications that use the Log4j logging framework to bridge and utilize SLF4J for logging operations.
 
-1. error 
-2. warn
-3. info 
-4. debug 
-5. trace
+3. **logback-classic**: The logback-classic library incorporates the SLF4J API, making it possible for applications using the Logback Classic logging framework to leverage SLF4J for their logging needs.
+### Logging Levels:
+* `Error` : Use the "error" logging level when a critical issue or unexpected error occurs in your application, and it needs immediate attention. This level should capture failures that prevent the application from functioning correctly, helping you identify and resolve these high-impact problems quickly.
+* `Warn` : The "warn" level is suitable for logging messages that highlight potentially problematic situations that don't immediately disrupt the application's functionality. It's often used for warnings or errors that the system can recover from, and it provides a heads-up for potential issues that should be investigated.
+* `Info` : The "info" level is for general information that helps you understand the flow of your application. Use it to log significant events and milestones in your code, such as when a user logs in, or an important process starts or completes successfully.
+* `Debug` : "Debug" level logging is intended for messages that aid developers in debugging and troubleshooting issues during development or testing. It provides detailed information about the internal workings of your code, helping you identify and fix problems efficiently.
+* `Trace` : The "trace" level is the most granular and detailed logging level, typically used to log every step or action within a specific process. It's useful for in-depth debugging and performance profiling, providing insights into the minutiae of application execution.
+
+Choosing the appropriate logging level depends on the context and the purpose of the logs, with lower levels providing more detailed information but generating larger log files.
+
+
+
 
 Note:
 There are companion annotations for other HTTP verbs (e.g. @PostMapping for POST). There is also a @RequestMapping annotation that they all derive from, and can serve as a synonym (e.g. @RequestMapping(method=GET)).
