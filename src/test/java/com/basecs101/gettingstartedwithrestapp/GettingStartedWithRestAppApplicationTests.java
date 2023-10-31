@@ -8,6 +8,7 @@ class GettingStartedWithRestAppApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("contextLoad test started");
 	}
 
 }

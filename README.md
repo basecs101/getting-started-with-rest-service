@@ -81,7 +81,7 @@ AAAA:BBBB:AABB:CCBB:DDAA:BEEB:AAFF:BBAA
 
 REST (Representational State Transfer) is an architectural style used in web development for building scalable, performant, and maintainable web services. RESTful API (Application Programming Interface) is an implementation of the REST architecture.
 
-RESTful API is a type of web API that is designed to work with HTTP (Hypertext Transfer Protocol) requests such as GET, POST, PUT, DELETE, etc., to retrieve, create, update or delete resources on the web. RESTful APIs use HTTP methods to define the actions to be performed on resources, and use URLs (Uniform Resource Locators) to identify resources.
+RESTful API is a type of web API that is designed to work with HTTP (Hypertext Transfer Protocol) requests such as `GET`, `POST`, `PUT`, `DELETE`, etc., to retrieve, create, update or delete resources on the web. RESTful APIs use HTTP methods to define the actions to be performed on resources, and use URLs (Uniform Resource Locators) to identify resources.
 
 RESTful APIs typically return data in JSON (JavaScript Object Notation) or XML (Extensible Markup Language) format, which are both lightweight and easy to parse. They also use hypermedia links to navigate between resources and represent the state of the system.
 
@@ -172,20 +172,20 @@ The most common methods are:
 3. Access Profile-Specific Properties:
 Configure a component or bean using @Profile annotation and get the beans when that profile is set.
 In your Java code, you can access the profile-specific properties using the @Value annotation or by injecting the Environment object.
-```
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
-
-@Component
-@Profile("dev")
-public class MyComponent {
-@Value("${spring.datasource.url}")
-private String databaseUrl;
-
-    // ...
-}
-```
+   ```
+   import org.springframework.beans.factory.annotation.Value;
+   import org.springframework.context.annotation.Profile;
+   import org.springframework.stereotype.Component;
+   
+   @Component
+   @Profile("dev")
+   public class MyComponent {
+   @Value("${spring.datasource.url}")
+   private String databaseUrl;
+   
+       // ...
+   }
+   ```
 4. Run the Application:
 When you run your Spring Boot application, it will load the configuration properties from the specified profile. Make sure you activate the desired profile using one of the methods mentioned above.
 By following these steps, you can create and manage multiple profiles in a Spring Boot application, allowing you to configure and customize the application for different environments or use cases.
@@ -194,22 +194,47 @@ By following these steps, you can create and manage multiple profiles in a Sprin
 ## Important Spring Boot Annotations
 
 ### Spring Boot Annotations:
-1. `SpringBootApplication` : `@SpringBootApplication` is a convenience annotation that adds all of the following:
-   `@SpringBootConfiguration`: Tags the class as a source of bean definitions for the application context.
-   `@EnableAutoConfiguration`: Tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings. For example, if spring-webmvc is on the classpath, this annotation flags the application as a web application and activates key behaviors, such as setting up a DispatcherServlet.
-   `@ComponentScan`: Tells Spring to look for other components, configurations, and services in the com/example package, letting it find the controllers.
-2. `SpringBootTest`
+1. `SpringBootApplication` : `@SpringBootApplication` is a convenience annotation that adds all the following:
+   * `@SpringBootConfiguration`: Tags the class as a source of bean definitions for the application context.
+   * `@EnableAutoConfiguration`: Tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings. For example, if spring-webmvc is on the classpath, this annotation flags the application as a web application and activates key behaviors, such as setting up a DispatcherServlet.
+   * `@ComponentScan`: Tells Spring to look for other components, configurations, and services in the com/example package, letting it find the controllers.
+2. `SpringBootTest` : Annotation that can be specified on a test class that runs Spring Boot based tests. Provides the following features over and above the regular Spring TestContext Framework:
+   * Uses `SpringBootContextLoader` as the default `ContextLoader` when no specific `@ContextConfiguration`(loader=...) is defined.
+   * Automatically searches for a `@SpringBootConfiguration` when nested `@Configuration` is not used, and no explicit classes are specified.
+   * Allows custom `Environment` properties to be defined using the properties attribute.
+   * Allows application arguments to be defined using the args attribute.
+   * Provides support for different webEnvironment modes, including the ability to start a fully running web server listening on a defined or random port.
+   * Registers a `TestRestTemplate` and/or `WebTestClient` bean for use in web tests that are using a fully running web server.
 3. `RestController` : The Spring boot `@RestController` annotation, which marks the class
    as a controller where every method returns a domain object instead of a view.
    It is shorthand for including both `@Controller` and `@ResponseBody`.
-4. `GetMapping` : The @GetMapping annotation ensures that HTTP GET requests to /greeting are mapped to the greeting() method.
-5. `PostMapping` : Create resource
-6. `PutMapping` : Update resource
-7. `PatchMapping` : Partial update of resource
-8. `DeleteMapping` : Delete existing resource
-9. `RequestParam` : @RequestParam binds the value of the query string parameter name into the name parameter of the greeting() method. If the name parameter is absent in the request, the defaultValue of World is used.
-10. `Profile` : It sets the spring managed beans to specifically available due that profile.
+4. `GetMapping` : The `@GetMapping` annotation ensures that HTTP GET requests to /greeting are mapped to the greeting() method.
+    It is just for selecting the resource.
+5. `PostMapping` : It is used for Creating a resource
+6. `PutMapping` : It is used for Updating a resource
+7. `PatchMapping` : It is used for Partial update of a resource
+8. `DeleteMapping` : It is used for Deleting an existing resource
+9. `RequestParam` : `@RequestParam` binds the value of the query string parameter name into the name parameter of the greeting() method. If the name parameter is absent in the request, the defaultValue of World is used.
+10. `Profile` : It sets the spring managed beans to specifically available to that profile. Eg. Some beans can be only available for test profiles if they are annotated with test profile.
+    ```@Configuration
+    @Profile("test")
+    //@Slf4j
+    public class BeanPrinterConfigClass implements InitializingBean {
+    ....
+    }```
 11. `Value` : Reads an attribute from application.properties file and stores it into an object field.
+12. `Scope` : What type of bean is requested by the application, this means the bean can be of type -- 
+    * singleton 
+    * prototype 
+    * request 
+    * session 
+    * application 
+    * websocket
+        ```@Bean
+        @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+        String beanObject(){
+        return "beanObjectCreated";
+        }```
 
 Note: Jackson - Json -> Converts java objects to Json objects.
 
