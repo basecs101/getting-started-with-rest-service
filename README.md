@@ -191,11 +191,11 @@ In your Java code, you can access the profile-specific properties using the @Val
 When you run your Spring Boot application, it will load the configuration properties from the specified profile. Make sure you activate the desired profile using one of the methods mentioned above.
 By following these steps, you can create and manage multiple profiles in a Spring Boot application, allowing you to configure and customize the application for different environments or use cases.
 
-
+---
 ## Important Spring Boot Annotations
 
 ### Spring Boot Annotations:
-1. `SpringBootApplication` : `@SpringBootApplication` is a convenience annotation that adds all the following:
+1. `@SpringBootApplication` : `@SpringBootApplication` is a convenience annotation that adds all the following:
     1. `@SpringBootConfiguration`: Tags the class as a source of bean definitions for the Application Context or \
        Spring IOC Container.
     2. `@EnableAutoConfiguration`: Tells Spring Boot to start adding beans based on classpath settings, other beans, \
@@ -203,7 +203,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
        application as a web application and activates key behaviors, such as setting up a DispatcherServlet.
     3. `@ComponentScan`: Tells Spring to look for other `@Component`, `@Configuration`, `@Controller` and `@Service` \
        in the com/basecs101 package, letting it find the classes to create beans.
-2. `SpringBootTest` : Annotation that can be specified on a test class that runs Spring Boot based tests. Provides the following features over and above the regular Spring TestContext Framework:
+2. `@SpringBootTest` : Annotation that can be specified on a test class that runs Spring Boot based tests. Provides the following features over and above the regular Spring TestContext Framework:
    * Uses `SpringBootContextLoader` as the default `ContextLoader` when no specific `@ContextConfiguration`(loader=...) is defined.
    * Automatically searches for a `@SpringBootConfiguration` when nested `@Configuration` is not used, and no explicit classes are specified.
    * Allows custom `Environment` properties to be defined using the properties attribute.
@@ -215,15 +215,16 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     The `@RestController` annotation combines the `@Controller` and `@ResponseBody` annotations, which means that all methods in the controller class will return the response as the body of the HTTP response, rather than returning a view name that would be resolved by a view resolver. \
     This annotation is commonly used in Spring Boot applications that serve as RESTful web services, where the application provides a set of HTTP endpoints to expose functionality to client applications or other services. It is shorthand for including both `@Controller` and `@ResponseBody`.
 
-4. `Profile` : It sets the spring managed beans to specifically available to that profile. Eg. Some beans can be only available for test profiles if they are annotated with test profile.
-   ```@Configuration
+4. `@Profile` : It sets the spring managed beans to specifically available to that profile. Eg. Some beans can be only available for test profiles if they are annotated with test profile.
+   ```Java 
+   @Configuration
    @Profile("test")
    //@Slf4j
    public class BeanPrinterConfigClass implements InitializingBean {
    ....
-   }```
-5. `Value` : Reads an attribute from application.properties file and stores it into an object field.
-6. `Scope` : What type of bean is requested by the application, this means the bean can be of type -- 
+   }
+5. `@Value` : Reads an attribute from application.properties file and stores it into an object field.
+6. `@Scope` : What type of bean is requested by the application, this means the bean can be of type -- 
    * singleton 
    * prototype 
    * request 
