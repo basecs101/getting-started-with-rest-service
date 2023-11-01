@@ -1,10 +1,10 @@
-package com.basecs101.gettingstartedwithrestapp;
+package com.basecs101.restapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GettingStartedWithRestAppApplicationTests {
+class SpringBootRestAppTests {
 
 	@Test
 	void contextLoads() {

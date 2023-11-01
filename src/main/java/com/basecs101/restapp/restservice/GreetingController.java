@@ -1,13 +1,10 @@
-package com.basecs101.gettingstartedwithrestapp.restservice;
+package com.basecs101.restapp.restservice;
 
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.logging.LogLevel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.basecs101.restapp.exception.CustomException;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 //@Slf4j
@@ -23,7 +20,8 @@ public class GreetingController {
      * @return Greeting
      * Example request -> `<a href="http://localhost:8080/greeting?msg=vikram">...</a>`
      */
-    @GetMapping("/greeting")
+//    @GetMapping("/greeting")
+    @RequestMapping(value = "/greeting", method = RequestMethod.GET)
     public Greeting greeting(@RequestParam(value = "msg", defaultValue = "World") String msgValue) {
 
         return new Greeting(counter.incrementAndGet(), String.format(template, msgValue));
@@ -37,6 +35,11 @@ public class GreetingController {
         log.debug("greeting method called...debug log");
         log.trace("greeting method called... trace log");
         return "Log method called";
+    }
+
+    @RequestMapping(value = "/exception", method = RequestMethod.POST)
+    public void throwException(){
+        throw new CustomException("Exception thrown from RestController");
     }
 
 }
