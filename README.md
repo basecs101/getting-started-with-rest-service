@@ -2,7 +2,7 @@
 A sample spring boot rest application and demo rest methods. 
 A lot of other concepts covered in readme. \n
 Here's a table of contents for this README doc:
-
+---
 1. **Introduction**
    - Brief overview of the "getting-started-with-rest-service" project.
 
@@ -38,6 +38,7 @@ Here's a table of contents for this README doc:
 
 12. **Reference**
     - A reference to an external tutorial.
+---
 
 ## Networking Concepts
 IPv4 -> 4 octets -> 4*8 =32 bits -> 2^32
@@ -65,6 +66,8 @@ F -> 1111
 
 AAAA:BBBB:AABB:CCBB:DDAA:BEEB:AAFF:BBAA
 16+   16+  16+  16+  16+  16+  16+  16 =128
+---
+
 ## Protocols
 1. IP protocol -> Machine has an IP on the internet
    Port -> Communication channel for a service 
@@ -77,6 +80,7 @@ AAAA:BBBB:AABB:CCBB:DDAA:BEEB:AAFF:BBAA
 8. DNS -> Domain name Service -> 53
 9.NIC Card -> N/w interface card, Number of NIC cards = Number of IP address
 
+---
 ## What is REST
 
 REST (Representational State Transfer) is an architectural style used in web development for building scalable, performant, and maintainable web services. RESTful API (Application Programming Interface) is an implementation of the REST architecture.
@@ -87,6 +91,7 @@ RESTful APIs typically return data in JSON (JavaScript Object Notation) or XML (
 
 RESTful APIs are widely used in modern web development for creating web services that are easy to consume, scalable, and platform-agnostic. They are used by many popular web applications and services, such as Twitter, Facebook, and Google Maps.
 
+---
 ## API Architectural designs You Must Know
 
 1. REST 🌐
@@ -109,6 +114,7 @@ RESTful APIs are widely used in modern web development for creating web services
 
 ![api-architecture-design.gif](src/main/resources/api-architecture-design.gif)
 
+---
 ## Request URL example for REST
 > Example of URL :- `http://localhost:8080/greeting?name=Vikram`
 
@@ -119,6 +125,7 @@ RESTful APIs are widely used in modern web development for creating web services
 * name -> request parameter key
 * Vikram -> request parameter value
 
+---
 ## What is Spring Framework and How Spring Boot and Spring MVC are different?
 
 1. Spring Framework:
@@ -142,37 +149,31 @@ In summary, Spring is a versatile framework for building enterprise applications
 
 Spring Boot allows you to define and work with multiple profiles, which is helpful when you want to manage different configurations for your application based on the environment or use case. Profiles are typically used to manage settings like database connection details, logging levels, and other configuration parameters for various deployment environments (e.g., development, testing, production). Here's how you can create and use multiple profiles in Spring Boot:
 
-1. Define Multiple Configuration Files:
+1. Define Multiple Configuration Files: Create separate configuration files for each profile. By default, Spring Boot uses application.properties or application.yml. To create a profile-specific configuration, you can create files like application-dev.properties, application-test.properties, and application-prod.properties for development, testing, and production profiles, respectively. 
+   For example, you can create an application-dev.properties file for the "dev" profile:
 
-Create separate configuration files for each profile. By default, Spring Boot uses application.properties or application.yml. To create a profile-specific configuration, you can create files like application-dev.properties, application-test.properties, and application-prod.properties for development, testing, and production profiles, respectively.
+    ### application-dev.properties
+    ```
+    spring.datasource.url=jdbc:mysql://localhost:3306/dev_database
+    logging.level.root=debug
+    ```
 
-For example, you can create an application-dev.properties file for the "dev" profile:
-
-   ### application-dev.properties
-   ```
-   spring.datasource.url=jdbc:mysql://localhost:3306/dev_database
-   logging.level.root=debug
-   ```
-
-2. Activate Profiles:
-Profiles can be activated in various ways. 
-
-The most common methods are:
-   * Using `application.properties` or `application.yml`:
+2. Activate Profiles: Profiles can be activated in various ways. The most common methods are:
+   - Using `application.properties` or `application.yml`:
    You can specify the active profile in your `application.properties` or `application.yml` file using the `spring.profiles.active` property.
    `spring.profiles.active=dev`
-  * Using Command Line Arguments:
-  You can specify the active profile as a command-line argument when running your Spring Boot application.
-  `java -jar my-spring-app.jar --spring.profiles.active=dev`
-  * Using Environment Variables:
-  You can set the `SPRING_PROFILES_ACTIVE` environment variable to specify the active profile.
-  Using the `application-{profile}.properties` or `application-{profile}.yml` Naming Convention:
-  Spring Boot will automatically pick up the appropriate profile-specific configuration file based on the active profile.
+   - Using Command Line Arguments:
+   You can specify the active profile as a command-line argument when running your Spring Boot application.
+   `java -jar my-spring-app.jar --spring.profiles.active=dev`
+   - Using Environment Variables:
+   You can set the `SPRING_PROFILES_ACTIVE` environment variable to specify the active profile.
+   Using the `application-{profile}.properties` or `application-{profile}.yml` Naming Convention:
+   Spring Boot will automatically pick up the appropriate profile-specific configuration file based on the active profile.
 
 3. Access Profile-Specific Properties:
 Configure a component or bean using @Profile annotation and get the beans when that profile is set.
 In your Java code, you can access the profile-specific properties using the @Value annotation or by injecting the Environment object.
-   ```
+   ```Java
    import org.springframework.beans.factory.annotation.Value;
    import org.springframework.context.annotation.Profile;
    import org.springframework.stereotype.Component;
@@ -185,7 +186,7 @@ In your Java code, you can access the profile-specific properties using the @Val
    
        // ...
    }
-   ```
+   
 4. Run the Application:
 When you run your Spring Boot application, it will load the configuration properties from the specified profile. Make sure you activate the desired profile using one of the methods mentioned above.
 By following these steps, you can create and manage multiple profiles in a Spring Boot application, allowing you to configure and customize the application for different environments or use cases.
@@ -195,9 +196,13 @@ By following these steps, you can create and manage multiple profiles in a Sprin
 
 ### Spring Boot Annotations:
 1. `SpringBootApplication` : `@SpringBootApplication` is a convenience annotation that adds all the following:
-   * `@SpringBootConfiguration`: Tags the class as a source of bean definitions for the application context.
-   * `@EnableAutoConfiguration`: Tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings. For example, if spring-webmvc is on the classpath, this annotation flags the application as a web application and activates key behaviors, such as setting up a DispatcherServlet.
-   * `@ComponentScan`: Tells Spring to look for other components, configurations, and services in the com/example package, letting it find the controllers.
+    1. `@SpringBootConfiguration`: Tags the class as a source of bean definitions for the Application Context or \
+       Spring IOC Container.
+    2. `@EnableAutoConfiguration`: Tells Spring Boot to start adding beans based on classpath settings, other beans, \
+       and various property settings. For example, if spring-webmvc is on the classpath, this annotation flags the \
+       application as a web application and activates key behaviors, such as setting up a DispatcherServlet.
+    3. `@ComponentScan`: Tells Spring to look for other `@Component`, `@Configuration`, `@Controller` and `@Service` \
+       in the com/basecs101 package, letting it find the classes to create beans.
 2. `SpringBootTest` : Annotation that can be specified on a test class that runs Spring Boot based tests. Provides the following features over and above the regular Spring TestContext Framework:
    * Uses `SpringBootContextLoader` as the default `ContextLoader` when no specific `@ContextConfiguration`(loader=...) is defined.
    * Automatically searches for a `@SpringBootConfiguration` when nested `@Configuration` is not used, and no explicit classes are specified.
@@ -205,89 +210,68 @@ By following these steps, you can create and manage multiple profiles in a Sprin
    * Allows application arguments to be defined using the args attribute.
    * Provides support for different webEnvironment modes, including the ability to start a fully running web server listening on a defined or random port.
    * Registers a `TestRestTemplate` and/or `WebTestClient` bean for use in web tests that are using a fully running web server.
-3. `RestController` : The Spring boot `@RestController` annotation, which marks the class
-   as a controller where every method returns a domain object instead of a view.
-   It is shorthand for including both `@Controller` and `@ResponseBody`.
-4. `GetMapping` : The `@GetMapping` annotation ensures that HTTP GET requests to /greeting are mapped to the greeting() method.
-    It is just for selecting the resource.
-5. `PostMapping` : It is used for Creating a resource
-6. `PutMapping` : It is used for Updating a resource
-7. `PatchMapping` : It is used for Partial update of a resource
-8. `DeleteMapping` : It is used for Deleting an existing resource
-9. `RequestParam` : `@RequestParam` binds the value of the query string parameter name into the name parameter of the greeting() method. If the name parameter is absent in the request, the defaultValue of World is used.
-10. `Profile` : It sets the spring managed beans to specifically available to that profile. Eg. Some beans can be only available for test profiles if they are annotated with test profile.
-    ```@Configuration
-    @Profile("test")
-    //@Slf4j
-    public class BeanPrinterConfigClass implements InitializingBean {
-    ....
-    }```
-11. `Value` : Reads an attribute from application.properties file and stores it into an object field.
-12. `Scope` : What type of bean is requested by the application, this means the bean can be of type -- 
-    * singleton 
-    * prototype 
-    * request 
-    * session 
-    * application 
-    * websocket
-    ```Java  
-    @Bean
-    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    String beanObject(){
-    return "beanObjectCreated";
-    }
+3. `@RestController` : The `@RestController` annotation is a specialization of the `@Controller` annotation in Spring Boot that is used to indicate that the annotated class is a REST controller. \
+    When a class is annotated with `@RestController`, Spring Boot automatically maps the methods in the class to specific HTTP requests based on the method annotations such as `@GetMapping`, `@PostMapping`, `@PutMapping`, `@PatchMapping`, `@DeleteMapping`, etc. The methods return the response as JSON or XML data, depending on the content type of the request. \
+    The `@RestController` annotation combines the `@Controller` and `@ResponseBody` annotations, which means that all methods in the controller class will return the response as the body of the HTTP response, rather than returning a view name that would be resolved by a view resolver. \
+    This annotation is commonly used in Spring Boot applications that serve as RESTful web services, where the application provides a set of HTTP endpoints to expose functionality to client applications or other services. It is shorthand for including both `@Controller` and `@ResponseBody`.
+
+4. `Profile` : It sets the spring managed beans to specifically available to that profile. Eg. Some beans can be only available for test profiles if they are annotated with test profile.
+   ```@Configuration
+   @Profile("test")
+   //@Slf4j
+   public class BeanPrinterConfigClass implements InitializingBean {
+   ....
+   }```
+5. `Value` : Reads an attribute from application.properties file and stores it into an object field.
+6. `Scope` : What type of bean is requested by the application, this means the bean can be of type -- 
+   * singleton 
+   * prototype 
+   * request 
+   * session 
+   * application 
+   * websocket
+   ```Java  
+   @Bean
+   @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+   String beanObject(){
+   return "beanObjectCreated";
+   }
 
 
-13. `@Component`: The `@Component` annotation is used to mark a Java class as a Spring component, which \
-    means that it will be automatically detected by the Spring container and instantiated as a bean. \
-    For example, you can annotate a DAO class with @Component to make it available for auto wiring in \
-    other Spring components.
+7. `@Component`: The `@Component` annotation is used to mark a Java class as a Spring component, which \
+   means that it will be automatically detected by the Spring container and instantiated as a bean. \
+   For example, you can annotate a DAO class with @Component to make it available for auto wiring in \
+   other Spring components.
 
-14. `@Bean`: The `@Bean` annotation is used to declare a Spring bean manually in a configuration class. \
-    It is typically used for complex beans that require some customization or initialization, and cannot \
-    be created with just the @Component annotation. For example, you can define a custom DataSource bean \
-    using the @Bean annotation.
+8. `@Bean`: The `@Bean` annotation is used to declare a Spring bean manually in a configuration class. \
+   It is typically used for complex beans that require some customization or initialization, and cannot \
+   be created with just the @Component annotation. For example, you can define a custom DataSource bean \
+   using the @Bean annotation.
 
-15. `@ComponentScan`: The `@ComponentScan` annotation is used to specify the base package(s) that Spring \
-    should scan for components. By default, Spring scans the package that contains the configuration class, \
-    but you can use @ComponentScan to specify additional packages or exclude certain packages from scanning.
+9. `@ComponentScan`: The `@ComponentScan` annotation is used to specify the base package(s) that Spring \
+   should scan for components. By default, Spring scans the package that contains the configuration class, \
+   but you can use @ComponentScan to specify additional packages or exclude certain packages from scanning.
 
-16. `@Configuration`: The `@Configuration` annotation is used to indicate that a class is a Spring configuration
+10. `@Configuration`: The `@Configuration` annotation is used to indicate that a class is a Spring configuration
     class, which means that it contains bean definitions and other configuration metadata. A configuration \
     class is typically used to define beans using the @Bean annotation or to import other configuration classes.
 
-17. `@PostConstruct`: The `@PostConstruct` annotation is used to specify a method that should be called after \
+11. `@PostConstruct`: The `@PostConstruct` annotation is used to specify a method that should be called after \
     the bean has been instantiated and all its dependencies have been injected. This method can be used for \
     initialization tasks that require access to the bean's dependencies.
 
-18. `@PreDestroy`: The `@PreDestroy` annotation is used to specify a method that should be called before the \
+12. `@PreDestroy`: The `@PreDestroy` annotation is used to specify a method that should be called before the \
     bean is destroyed. This method can be used for cleanup tasks that need to be performed when the bean is \
     no longer needed.
 
-19. `SpringBootApplication` : `@SpringBootApplication` is a convenience annotation that adds all the following:
-     1. `@SpringBootConfiguration`: Tags the class as a source of bean definitions for the Application Context or \
-        Spring IOC Container.
-     2. `@EnableAutoConfiguration`: Tells Spring Boot to start adding beans based on classpath settings, other beans, \
-        and various property settings. For example, if spring-webmvc is on the classpath, this annotation flags the \
-        application as a web application and activates key behaviors, such as setting up a DispatcherServlet.
-     3. `@ComponentScan`: Tells Spring to look for other `@Component`, `@Configuration`, `@Controller` and `@Service` \
-        in the com/basecs101 package, letting it find the classes to create beans.
-
-20. `@SpringBootTest` : Marks the class as Spring boot test class
-
-21. `@RestController` : The `@RestController` annotation is a specialization of the `@Controller` annotation in Spring Boot that is used to indicate that the annotated class is a REST controller. \
-    When a class is annotated with `@RestController`, Spring Boot automatically maps the methods in the class to specific HTTP requests based on the method annotations such as `@GetMapping`, `@PostMapping`, `@PutMapping`, `@PatchMapping`, `@DeleteMapping`, etc. The methods return the response as JSON or XML data, depending on the content type of the request. \
-    The `@RestController` annotation combines the `@Controller` and `@ResponseBody` annotations, which means that all methods in the controller class will return the response as the body of the HTTP response, rather than returning a view name that would be resolved by a view resolver. \
-    This annotation is commonly used in Spring Boot applications that serve as RESTful web services, where the application provides a set of HTTP endpoints to expose functionality to client applications or other services.
-
-22. `@RequestMapping`: This annotation is used to map a method to a specific URI and HTTP request method. It is a versatile annotation that can be used to handle all HTTP methods, including GET, POST, PUT,PATCH, DELETE, and more. Example:
+13. `@RequestMapping`: This annotation is used to map a method to a specific URI and HTTP request method. It is a versatile annotation that can be used to handle all HTTP methods, including GET, POST, PUT,PATCH, DELETE, and more. Example:
     ```Java
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<User> getAllUsers() {
     // method logic
     }
 
-23. `@GetMapping`: This annotation is a shortcut for @RequestMapping with method GET. It is used to map a method to a specific URI using HTTP GET method. Example:
+14. `@GetMapping`: This annotation is a shortcut for @RequestMapping with method GET. It is used to map a method to a specific URI using HTTP GET method. Example:
 
     ```Java
     @GetMapping("/users/{id}")
@@ -295,7 +279,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     // method logic
     }
 
-24. `@PostMapping`: This annotation is used to map a method to a specific URI using HTTP POST method. Example:
+15. `@PostMapping`: This annotation is used to map a method to a specific URI using HTTP POST method. Example:
 
     ```Java
     @PostMapping("/users")
@@ -303,7 +287,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     // method logic
     }
 
-25. `@PutMapping`: This annotation is used to map a method to a specific URI using HTTP PUT method. Example:
+16. `@PutMapping`: This annotation is used to map a method to a specific URI using HTTP PUT method. Example:
 
     ```Java
     @PutMapping("/users/{id}")
@@ -311,7 +295,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     // method logic
     }
 
-26. `@PatchMapping`: This annotation is used to map a method to a specific URI using HTTP PATCH method. Example:
+17. `@PatchMapping`: This annotation is used to map a method to a specific URI using HTTP PATCH method. Example:
 
     ```Java
     @PatchMapping("/users/{id}")
@@ -319,7 +303,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     // method logic
     }
 
-27. `@DeleteMapping`: This annotation is used to map a method to a specific URI using HTTP DELETE method. Example:
+18. `@DeleteMapping`: This annotation is used to map a method to a specific URI using HTTP DELETE method. Example:
 
     ```Java
     @DeleteMapping("/users/{id}")
@@ -327,7 +311,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     // method logic
     }
 
-28. `@RequestParam`: This annotation is used to map a request parameter to a method parameter. It is used to extract a specific parameter value from the request URL. Example:
+19. `@RequestParam`: This annotation is used to map a request parameter to a method parameter. It is used to extract a specific parameter value from the request URL. Example:
 
     ```Java   
     @GetMapping("/users")
@@ -335,7 +319,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     // method logic
     }
 
-29. `@PathVariable`: This annotation is used to extract a URI variable and map it to a method parameter. Example:
+20. `@PathVariable`: This annotation is used to extract a URI variable and map it to a method parameter. Example:
 
     ```Java
     @GetMapping("/users/{id}")
@@ -343,7 +327,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     // method logic
     }
 
-30. `@RequestBody`: This annotation is used to map the request body to a method parameter. It is used to extract the request payload and convert it into an object. Example:
+21. `@RequestBody`: This annotation is used to map the request body to a method parameter. It is used to extract the request payload and convert it into an object. Example:
 
     ```Java
     @PostMapping("/users")
@@ -351,7 +335,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     // method logic
     }
 
-31. `@ResponseBody`: This annotation is used to indicate that the method return value should be used as the response body. It is used to convert the response object into JSON or XML format. Example:
+22. `@ResponseBody`: This annotation is used to indicate that the method return value should be used as the response body. It is used to convert the response object into JSON or XML format. Example:
 
     ```Java
     @GetMapping("/users")
@@ -360,7 +344,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     // method logic
     }
 
-32. `@ControllerAdvice`: This annotation is used to define global exception handling for controllers. It is used to handle exceptions across all controller methods. Example:
+23. `@ControllerAdvice`: This annotation is used to define global exception handling for controllers. It is used to handle exceptions across all controller methods. Example:
 
     ```Java   
     @ControllerAdvice
@@ -371,7 +355,7 @@ By following these steps, you can create and manage multiple profiles in a Sprin
     }
     }
 
-33. `@ExceptionHandler(EmployeeNotFoundException.class)`: This annotation is used to define an exception handling method for a specific exception. It is used to handle a specific exception thrown by a controller method. Example:
+24. `@ExceptionHandler(EmployeeNotFoundException.class)`: This annotation is used to define an exception handling method for a specific exception. It is used to handle a specific exception thrown by a controller method. Example:
 
     ```Java
     @GetMapping("/employees/{id}")
@@ -381,13 +365,13 @@ By following these steps, you can create and manage multiple profiles in a Sprin
           throw new EmployeeNotFoundException("Employee")
     }
 
-34. `@Value` : This annotation is used for reading value of the variable of application.yml into classes as field names.
-35. `@Profile` : This is used to set a profile. eg. local, dev , stg, prod etc.
-
-
-> The main() method uses Spring Boot’s SpringApplication.run() method to launch an application. Did you notice that there was not a single line of XML? There is no web.xml file, either. This web application is 100% pure Java and you did not have to deal with configuring any plumbing or infrastructure.
+25. `@Value` : This annotation is used for reading value of the variable of application.yml into classes as field names.
+26. `@Profile` : This is used to set a profile. eg. local, dev , stg, prod etc.
 
 ---
+> The main() method uses Spring Boot’s SpringApplication.run() method to launch an application. Did you notice that there was not a single line of XML? There is no web.xml file, either. This web application is 100% pure Java and you did not have to deal with configuring any plumbing or infrastructure.
+---
+
 ### Lombok Annotations
 #### Declare all these annotations at class level to replace boiler plat code
 1. `@Getter` -> To replace all getters
